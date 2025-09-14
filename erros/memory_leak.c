@@ -9,7 +9,7 @@
 - gcc erros/memory_leak.c -o output/memory_leak
 
 - Para executar:
-- ./memory_leak
+- .output/memory_leak
 */
 
 #include <stdio.h>
