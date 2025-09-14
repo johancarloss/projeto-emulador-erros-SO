@@ -1,1 +1,0 @@
-# projeto-emulador-erros-SO
