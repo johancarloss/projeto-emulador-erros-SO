@@ -33,7 +33,10 @@ void* thread1_func(void* arg) {
   sleep(1); // Simula trabalho e dá chance para a outra thread executar
 
   printf("[Thread 1] Tentando pegar impressora 2...\n");
-  pthread_mutex_lock(&impressora2);
+  if(pthread_mutex_trylock(&impressora2) != 0) {
+    printf("  - [Thread 1] Bloqueada esperando impressora 2...\n");
+    pthread_mutex_lock(&impressora2);
+  }
   printf("[Thread 1] Impressora 2 adquirida.\n");
 
   // Trabalho finalizado
@@ -51,10 +54,13 @@ void* thread2_func(void* arg) {
     pthread_mutex_lock(&impressora2);
     printf("[Thread 2] Impressora 2 adquirida.\n");
 
-    sleep(1); // simula trabalho e dá chance para a outra thread executar
+    sleep(1); // Simula trabalho e dá chance para a outra thread executar
 
     printf("[Thread 2] Tentando pegar impressora 1...\n");
-    pthread_mutex_lock(&impressora1);
+    if(pthread_mutex_trylock(&impressora1) != 0) {
+        printf("  - [Thread 2] Bloqueada esperando impressora 1...\n");
+        pthread_mutex_lock(&impressora1);
+    }
     printf("[Thread 2] Impressora 1 adquirida.\n");
 
     // Trabalho finalizado
