@@ -3,16 +3,20 @@
 
 - Demonstração de Deadlock
 - Cenário: duas threads tentam acessar dois recursos compartilhados (impressoras)
-- simultaneamente, mas em ordem diferentes, causando deadlock.
+  simultaneamente, mas em ordem diferentes, causando deadlock.
+  Cada thread pega uma impressora e tenta pegar a outra, podendo travar 
+  indefinidamente.
 
 - Para compilar:
-- gcc erros/deadlock.c -o output/deadlock -pthread
+  gcc erros/deadlock.c -o output/deadlock -pthread
 
 - Para executar:
-- ./output/deadlock
+  ./output/deadlock
 
 - Observação:
-- As threads podem travar indefinidamente devido ao deadlock.
+  As threads podem travar indefinidamente devido ao deadlock.
+  É intencional para demonstração do problema.
+  Use Ctrl+C para encerrar se travar
 */
 
 #include <stdio.h>
@@ -27,13 +31,14 @@ pthread_mutex_t impressora2 = PTHREAD_MUTEX_INITIALIZER;
 // Função executada por thread 1
 void* thread1_func(void* arg) {
   printf("[Thread 1] Tentando pegar impressora 1...\n");
-  pthread_mutex_lock(&impressora1);
+  pthread_mutex_lock(&impressora1); // Bloqueia impressora1
   printf("[Thread 1] Impressora 1 adquirida.\n");
 
-  sleep(1); // Simula trabalho e dá chance para a outra thread executar
+  sleep(1); // Simula trabalho e dá chance para a outra thread executar, aumentando a chance de deadlock
 
   printf("[Thread 1] Tentando pegar impressora 2...\n");
   if(pthread_mutex_trylock(&impressora2) != 0) {
+    // Tenta pegar impressora2, se não conseguir, bloqueia esperando
     printf("  - [Thread 1] Bloqueada esperando impressora 2...\n");
     pthread_mutex_lock(&impressora2);
   }
@@ -42,8 +47,10 @@ void* thread1_func(void* arg) {
   // Trabalho finalizado
   printf("[Thread 1] Impressao concluída.\n");
 
-  pthread_mutex_lock(&impressora2);
-  pthread_mutex_lock(&impressora1);
+  // Nota: As próximas linhas de lock extra foram removidas, pois são redundantes
+  // e nunca seriam alcançadas de forma segura.
+  // pthread_mutex_lock(&impressora2);
+  // pthread_mutex_lock(&impressora1);
 
   pthread_exit(NULL);
 }
@@ -51,15 +58,16 @@ void* thread1_func(void* arg) {
 // Função executada por thread 2
 void* thread2_func(void* arg) {
     printf("[Thread 2] Tentando pegar impressora 2...\n");
-    pthread_mutex_lock(&impressora2);
+    pthread_mutex_lock(&impressora2); // Blolqueia a impressora2
     printf("[Thread 2] Impressora 2 adquirida.\n");
 
-    sleep(1); // Simula trabalho e dá chance para a outra thread executar
+    sleep(1); // Simula trabalho e dá chance para a outra thread executar, aumentando a chance de deadlock
 
     printf("[Thread 2] Tentando pegar impressora 1...\n");
     if(pthread_mutex_trylock(&impressora1) != 0) {
-        printf("  - [Thread 2] Bloqueada esperando impressora 1...\n");
-        pthread_mutex_lock(&impressora1);
+      // Tenta pegar impressora1, se não conseguir, bloqueia esperando
+      printf("  - [Thread 2] Bloqueada esperando impressora 1...\n");
+      pthread_mutex_lock(&impressora1);
     }
     printf("[Thread 2] Impressora 1 adquirida.\n");
 
