@@ -1,25 +1,19 @@
-# Usando Ubuntu como base
+# Dockerfile
 FROM ubuntu:22.04
 
-# Evita perguntas interativas durante a instalação
-ENV DEBIAN_FRONTEND=noninteractive
-
-# Atualiza e instala gcc e dependências
+# Instalar dependências necessárias
 RUN apt-get update && \
-    apt-get install -y gcc build-essential make git && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y gcc build-essential make bash && \
+    apt-get clean
 
-# Cria pasta do projeto dentro do container
+# Criar diretório de trabalho
 WORKDIR /app
 
-# Copia todo o repositório para dentro do container
+# Copiar todo o projeto para dentro do container
 COPY . .
 
-# Dá permissão para run.sh
+# Dar permissão para o run.sh
 RUN chmod +x runner/run.sh
 
-# Compila todos os erros e o runner
-RUN ./runner/run.sh
-
-# Define entrypoint para rodar o runner
-ENTRYPOINT ["./docker/entrypoint.sh"]
+# Definir entrypoint
+ENTRYPOINT ["./runner/run.sh"]
