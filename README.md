@@ -194,7 +194,7 @@ docker build -t test .       # Testa com Docker
 docker run -it test          # Executa container de teste
 ```
 
-### Próximas Features (Roadmap)
+### Possíveis Próximas Features (Roadmap)
 
 - [ ] 🚧 **v2.0**: Implementar erros restantes
   - [ ] Segmentation Fault com análise de memória
@@ -223,16 +223,6 @@ docker run -it test          # Executa container de teste
 - ✅ Compreensão de comportamentos não-determinísticos
 - ✅ Experiência hands-on com problemas reais
 - ✅ Ambiente de aprendizado controlado
-
-## 📄 Licença
-
-Este projeto está sob licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
-
-## 🤝 Contribuidores
-
-Contribuições são sempre bem-vindas! Por favor, leia as [diretrizes de contribuição](CONTRIBUTING.md) antes de submeter um PR.
-
----
 
 <div align="center">
 
