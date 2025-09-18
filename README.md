@@ -224,6 +224,8 @@ docker run -it test          # Executa container de teste
 - ✅ Experiência hands-on com problemas reais
 - ✅ Ambiente de aprendizado controlado
 
+---
+
 <div align="center">
 
 **Desenvolvido com ❤️ para educação em Sistemas Operacionais**
