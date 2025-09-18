@@ -114,7 +114,7 @@ int main() {
     switch (opcao) {
       case 1:
         executar_programa("memory_leak",
-                          "Este erro demonstra vazamento de mempria (Memory Leak).",
+                          "Este erro demonstra vazamento de memoria (Memory Leak).",
                           &contador_memory_leak);
         break;
       case 2:
