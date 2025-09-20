@@ -34,10 +34,10 @@ projeto-emulador-erros-SO/
 │   ├── memory_leak.c           # ✅ Vazamento de memória
 │   ├── race_condition.c        # ✅ Condições de corrida
 │   ├── deadlock.c              # ✅ Bloqueio mútuo
-│   ├── buffer_overflow.c       # 🚧 Em desenvolvimento
-│   ├── core_dump.c             # 🚧 Em desenvolvimento
+│   ├── buffer_overflow.c       # ✅ Estouro de buffer
+│   ├── stack_overflow.c        # ✅ Estouro de pilha
 │   ├── segfault.c              # 🚧 Em desenvolvimento
-│   └── stack_overflow.c        # 🚧 Em desenvolvimento
+│   └── core_dump.c             # 🚧 Em desenvolvimento
 ├── 📁 runner/                   # Sistema de execução
 │   ├── runner.c                # Menu interativo principal
 │   └── run.sh                  # Script de compilação automática
@@ -49,6 +49,8 @@ projeto-emulador-erros-SO/
 ├── 📁 output/                   # Executáveis compilados (auto-gerada)
 └── 📄 README.md                 # Esta documentação
 ```
+
+---
 
 ## ✅ Status dos Erros
 
@@ -70,6 +72,8 @@ projeto-emulador-erros-SO/
 | 💾 **Core Dump** | 🚧 Estrutura criada |
 
 > ⚠️ **Aviso de Segurança**: Os erros implementados podem afetar o desempenho do sistema. Execute com cautela e em ambiente controlado.
+
+---
 
 ## 🚀 Como Usar
 
@@ -186,30 +190,7 @@ Pipeline automatizado para build e publicação:
 5. **Push**: `git push origin feature/nova-funcionalidade`
 6. Abra um **Pull Request**
 
-### Estrutura de Desenvolvimento
-
-```bash
-# Para desenvolvimento local
-./runner/run.sh              # Compila e testa
-docker build -t test .       # Testa com Docker
-docker run -it test          # Executa container de teste
-```
-
-### Possíveis Próximas Features (Roadmap)
-
-- [ ] 🚧 **v2.0**: Implementar erros restantes
-  - [ ] Segmentation Fault com análise de memória
-  - [ ] Buffer Overflow com exemplos práticos  
-  - [ ] Stack Overflow com recursão controlada
-  - [ ] Core Dump com debugging info
-- [ ] 🎨 **v2.1**: Interface melhorada
-  - [ ] Cores no terminal
-  - [ ] Logs detalhados
-  - [ ] Modo educacional com explicações
-- [ ] 🔐 **v2.2**: Recursos de segurança
-  - [ ] Sandboxing avançado
-  - [ ] Limitação de recursos
-  - [ ] Timeouts automáticos
+---
 
 ## 🎓 Uso Educacional
 
