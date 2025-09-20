@@ -96,10 +96,10 @@ int main() {
     printf(ANSI_GREEN "1  - Memory Leak (executado %d vezes)\n" ANSI_RESET, contador_memory_leak);
     printf(ANSI_GREEN "2  - Race Condition (executado %d vezes)\n" ANSI_RESET, contador_race_condition);
     printf(ANSI_GREEN "3  - Deadlock (executado %d vezes)\n" ANSI_RESET, contador_deadlock);
-    printf(ANSI_YELLOW "4  - Segmentation Fault (em desenvolvimento)\n" ANSI_RESET);
-    printf(ANSI_YELLOW "5  - Core Dump (em desenvolvimento)\n" ANSI_RESET);
-    printf(ANSI_YELLOW "6  - Stack Overflow (em desenvolvimento)\n" ANSI_RESET);
-    printf(ANSI_YELLOW "7  - Buffer Overflow (em desenvolvimento)\n" ANSI_RESET);
+    printf(ANSI_GREEN "4  - Stack Overflow (executado %d vezes)\n" ANSI_RESET, contador_stack_overflow);
+    printf(ANSI_GREEN "5  - Buffer Overflow (executado %d vezes)\n" ANSI_RESET, contador_buffer_overflow);
+    printf(ANSI_YELLOW "6  - Segmentation Fault (em desenvolvimento)\n" ANSI_RESET);
+    printf(ANSI_YELLOW "7  - Core Dump (em desenvolvimento)\n" ANSI_RESET);
     printf("8  - Sair\n");
     printf("Escolha uma opcao: ");
 
@@ -128,24 +128,24 @@ int main() {
                           &contador_deadlock);
         break;
       case 4:
-        executar_programa("segfault",
-                            "Erro de Segmentação (Segmentation Fault).",
-                            &contador_segfault);
-        break;
-      case 5:
-        executar_programa("core_dump",
-                          "Erro de Core Dump.",
-                          &contador_core_dump);
-        break;
-      case 6:
         executar_programa("stack_overflow",
                           "Erro de Stack Overflow.",
                           &contador_stack_overflow);
         break;
-      case 7:
+      case 5:
         executar_programa("buffer_overflow",
                           "Erro de Buffer Overflow.",
                           &contador_buffer_overflow);
+          break;
+      case 6:
+        executar_programa("segfault",
+                            "Erro de Segmentação (Segmentation Fault).",
+                            &contador_segfault);
+        break;
+      case 7:
+        executar_programa("core_dump",
+                          "Erro de Core Dump.",
+                          &contador_core_dump);
         break;
       case 8:
       {

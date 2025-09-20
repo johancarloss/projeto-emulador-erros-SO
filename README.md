@@ -59,15 +59,15 @@ projeto-emulador-erros-SO/
 | 🧠 **Memory Leak** | Demonstra alocação de memória que nunca é liberada | Crescimento progressivo de 1MB por iteração | ❌ |
 | 🏃‍♂️ **Race Condition** | Múltiplas threads acessam recurso compartilhado simultaneamente | Comportamento não-determinístico | ✅ |
 | 🔒 **Deadlock** | Threads travadas esperando recursos umas das outras | Bloqueio completo do programa | ✅ |
+| 🔓 **Buffer Overflow** | Escrita de dados além do limite do buffer | Possível sobrescrição de memória adjacente | ❌ |
+| 📊 **Stack Overflow** | Excesso de chamadas recursivas ou alocação excessiva na stack | Programa encerra abruptamente | ❌ |
 
 ### 🟡 Em Desenvolvimento
 
-| Erro | Status | Próxima Release |
-|------|--------|----------------|
-| 💥 **Segmentation Fault** | 🚧 Estrutura criada | v2.0 |
-| 🔓 **Buffer Overflow** | 🚧 Estrutura criada | v2.0 |
-| 📊 **Stack Overflow** | 🚧 Estrutura criada | v2.0 |
-| 💾 **Core Dump** | 🚧 Estrutura criada | v2.0 |
+| Erro | Status |
+|------|--------|
+| 💥 **Segmentation Fault** | 🚧 Estrutura criada |
+| 💾 **Core Dump** | 🚧 Estrutura criada |
 
 > ⚠️ **Aviso de Segurança**: Os erros implementados podem afetar o desempenho do sistema. Execute com cautela e em ambiente controlado.
 
@@ -84,11 +84,7 @@ docker pull johancarloss/projeto-emulador:latest
 docker run -it --entrypoint /bin/bash johancarloss/projeto-emulador:latest
 # O prompt vai mudar para algo como: root@<id_do_container>:/app#
 # Depois disso só seguir o passo a passo presente no método 2
-# a partir do método 2
-
-# Ou construir localmente
-docker build -f docker/Dockerfile -t emulador-erros .
-docker run -it emulador-erros
+# a partir do tópico 2
 ```
 
 **Vantagens do Docker:**
