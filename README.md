@@ -78,8 +78,13 @@ projeto-emulador-erros-SO/
 A forma mais simples e segura de executar o projeto:
 
 ```bash
+# Puxar a imagem mais recente do Docker Hub
+docker pull johancarloss/projeto-emulador:latest
 # Executar diretamente do Docker Hub
-docker run -it johancarloss/projeto-emulador:latest
+docker run -it --entrypoint /bin/bash johancarloss/projeto-emulador:latest
+# O prompt vai mudar para algo como: root@<id_do_container>:/app#
+# Depois disso só seguir o passo a passo presente no método 2
+# a partir do método 2
 
 # Ou construir localmente
 docker build -f docker/Dockerfile -t emulador-erros .
